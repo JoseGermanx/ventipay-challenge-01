@@ -32,24 +32,24 @@ server.use(express.urlencoded({ extended: false }));
 
 //TODO JG modify to filter by type an return all payment methods with refactor to use try/catch
 
-server.get("/payment_methods/:type", (req, res) => {
-  const { type } = req.params;
+server.get("/payment_methods", (req, res) => {
+  const { type } = req.query;
+  console.log(type);
   try {
     fs.readFile("./data/data.json", (error, file) => {
+      const data = JSON.parse(file);
       if (error) {
         res.status(500).json({ message: "Can not access to the database" });
         console.log("Can not access to the database", error);
       }
       if (file.length === 0) {
         res.status(404).json({ message: "No payment methods found" });
-      }
+      }     
       if (type) {
-        const data = JSON.parse(file);
-        const paymentType = data.filter((e) => e.type.toString() === type);
+        const paymentType = data.filter((e) => e.type === type);
         return res.status(200).json(paymentType);
       } else {
-        const data = JSON.parse(file);
-        return res.status(200).json(data);
+        res.status(200).json(data);
       }
     });
   } catch (error) {
