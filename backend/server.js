@@ -26,9 +26,11 @@ const express = require("express");
 
 const server = express();
 const fs = require("fs"); //TODO JG acceder al sistema de archivos
+const cors = require("cors"); //TODO JG implementar cors
 //TODO JG configure
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
+server.use(cors());
 
 //TODO JG modify to filter by type an return all payment methods with refactor to use try/catch
 

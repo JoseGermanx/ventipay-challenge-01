@@ -9,31 +9,42 @@
  * 6. Implement a button to delete a credit card
  */
 
-import './App.css';
-import { React, useEffect, useState } from 'react';
+import "./App.css";
+import { React, useEffect, useState } from "react";
 
 function App() {
-  let paymentMethods = fetch({
-    method: 'get',
-    url: 'http://127.0.0.1/payment_methods',
-  });
+  
 
   const [paymentMethodsCount, setPaymentMethodsCount] = useState();
-  const [ paymentMethodsCountendingineven, setPaymentMethodsCountendingineven ] = useState();
+  const [paymentMethodsCountendingineven, setPaymentMethodsCountendingineven] =
+    useState();
+  const [paymentMethods, setPaymentMethods] = useState([]);
   const [isLoading, setIsLoading] = useState();
 
+  //TODO JG Implement fetch inside of useEffect for the first pull and set the state of paymentMethod
   useEffect(() => {
-    setPaymentMethodsCount(0);
-  });
+    fetch("http://127.0.0.1/payment_methods?type=credit_card")
+      .then((response) => response.json())
+      .then((data) => setPaymentMethods(data))
+      .catch((error) => console.log(error));
+      setTimeout(() => {
+        window.location.replace('');
+      }, 30000);
+      
+  }, []);
 
   useEffect(() => {
     setPaymentMethodsCountendingineven(0);
   });
 
+  useEffect(() => {
+    setPaymentMethodsCount(0);
+  });
+
   return (
     <div className="App">
-    <h1>Payment Methods.</h1>
-    <h2>Total: ({paymentMethodsCount})</h2>
+      <h1>Payment Methods.</h1>
+      <h2>Total: ({paymentMethodsCount})</h2>
     <h2>Total ending in an even number: ({ paymentMethodsCountendingineven }) </h2>
 
       <hr />
@@ -41,13 +52,14 @@ function App() {
         isLoading && <p>Loading...</p>
       }
       <ul>
-        {
-          paymentMethods.map(o => {
-            return (
-              <li>Brand: {o.brand}, Last 4: {o.last4}, Created At: {o.created_at}</li>
-            );
-          })
-        }
+        {paymentMethods.map((o, key) => {
+          return (
+            // TODO JG Implement key for each list item
+            <li key={key}> 
+              Brand: {o.brand}, Last 4: {o.last4}, Created At: {o.created_at}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
