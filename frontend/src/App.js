@@ -44,10 +44,18 @@ function App() {
     }
   }
 
+  function deleteCard(id) {
+    fetch(`http://127.0.0.1/payment_methods/delete/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+  }
+
   useEffect(() => {
     const paymentMethodsEven = paymentMethods.filter((e) => {
       return evenNumber(e.last4);
-    })
+    });
     setPaymentMethodsCountendingineven(paymentMethodsEven.length);
   }, [paymentMethods]);
 
@@ -78,6 +86,7 @@ function App() {
           })}
         </ul>
       )}
+      <button onClick={() => deleteCard(4)}>Delete Card</button>
     </div>
   );
 }

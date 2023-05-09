@@ -82,7 +82,7 @@ server.get("/payment_methods/details/:id", (req, res) => {
 });
 
 //TODO JG implement endpoint to delete a single payment method
-server.delete("/payment_methods/:id", (req, res) => {
+server.delete("/payment_methods/delete/:id", (req, res) => {
   const { id } = req.params;
   try {
     fs.readFile("./data/data.json", (error, file) => {
