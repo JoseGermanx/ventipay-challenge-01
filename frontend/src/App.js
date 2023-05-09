@@ -13,13 +13,11 @@ import "./App.css";
 import { React, useEffect, useState } from "react";
 
 function App() {
-  
-
   const [paymentMethodsCount, setPaymentMethodsCount] = useState();
   const [paymentMethodsCountendingineven, setPaymentMethodsCountendingineven] =
     useState();
   const [paymentMethods, setPaymentMethods] = useState([]);
-  const [isLoading, setIsLoading] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   //TODO JG Implement fetch inside of useEffect for the first pull and set the state of paymentMethod
   useEffect(() => {
@@ -27,10 +25,16 @@ function App() {
       .then((response) => response.json())
       .then((data) => setPaymentMethods(data))
       .catch((error) => console.log(error));
-      setTimeout(() => {
-        window.location.replace('');
-      }, 30000);
-      
+    setTimeout(() => {
+      window.location.replace("");
+    }, 30000);
+  }, []);
+
+  //TODO JG implemente isLoagind just for the first pull
+  useEffect(() => {
+    if (paymentMethods) {
+      setIsLoading(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -38,29 +42,32 @@ function App() {
   });
 
   useEffect(() => {
-    setPaymentMethodsCount(0);
+    setPaymentMethodsCount(paymentMethods.length);
   });
 
   return (
     <div className="App">
       <h1>Payment Methods.</h1>
       <h2>Total: ({paymentMethodsCount})</h2>
-    <h2>Total ending in an even number: ({ paymentMethodsCountendingineven }) </h2>
+      <h2>
+        Total ending in an even number: ({paymentMethodsCountendingineven}){" "}
+      </h2>
 
       <hr />
-      {
-        isLoading && <p>Loading...</p>
-      }
-      <ul>
-        {paymentMethods.map((o, key) => {
-          return (
-            // TODO JG Implement key for each list item
-            <li key={key}> 
-              Brand: {o.brand}, Last 4: {o.last4}, Created At: {o.created_at}
-            </li>
-          );
-        })}
-      </ul>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <ul>
+          {paymentMethods.map((o, key) => {
+            return (
+              // TODO JG Implement key for each list item
+              <li key={key}>
+                Brand: {o.brand}, Last 4: {o.last4}, Created At: {o.created_at}
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 }
