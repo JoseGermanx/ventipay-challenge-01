@@ -18,6 +18,7 @@ function App() {
     useState();
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [ idCard, setIdCard ] = useState();
 
   //TODO JG Implement fetch inside of useEffect for the first pull and set the state of paymentMethod
   useEffect(() => {
@@ -44,13 +45,15 @@ function App() {
     }
   }
 
-  function deleteCard(id) {
-    fetch(`http://127.0.0.1/payment_methods/delete/${id}`, {
+  const deleteCard = () => {
+    fetch(`http://127.0.0.1/payment_methods/delete/${idCard}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .then((res) => console.log(res));
-  }
+
+      window.location.reload();
+     };
 
   useEffect(() => {
     const paymentMethodsEven = paymentMethods.filter((e) => {
@@ -70,7 +73,19 @@ function App() {
       <h2>
         Total ending in an even number: ({paymentMethodsCountendingineven}){" "}
       </h2>
-
+      <div>
+      <h4>Delete By Card ID:</h4>
+      <select name="id_card" id="id_card" onChange={(e) => setIdCard(e.target.value)}>
+        {paymentMethods.map((e) => {
+          return (
+            <option key={e.id} value={e.id}>
+              {e.id}
+            </option>
+          );
+        })}
+      </select>
+      <button onClick={() => deleteCard()}>Delete Card</button>
+      </div>  
       <hr />
       {isLoading ? (
         <p>Loading...</p>
@@ -86,7 +101,6 @@ function App() {
           })}
         </ul>
       )}
-      <button onClick={() => deleteCard(4)}>Delete Card</button>
     </div>
   );
 }
