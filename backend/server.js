@@ -34,7 +34,6 @@ server.use(express.urlencoded({ extended: false }));
 
 server.get("/payment_methods", (req, res) => {
   const { type } = req.query;
-  console.log(type);
   try {
     fs.readFile("./data/data.json", (error, file) => {
       const data = JSON.parse(file);
