@@ -19,10 +19,15 @@ function App() {
   });
 
   const [paymentMethodsCount, setPaymentMethodsCount] = useState();
+  const [ paymentMethodsCountendingineven, setPaymentMethodsCountendingineven ] = useState();
   const [isLoading, setIsLoading] = useState();
 
   useEffect(() => {
     setPaymentMethodsCount(0);
+  });
+
+  useEffect(() => {
+    setPaymentMethodsCountendingineven(0);
   });
 
   return (
