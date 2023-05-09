@@ -37,13 +37,23 @@ function App() {
     }
   }, []);
 
+  function evenNumber(number) {
+    const lastNumber = number.toString().split("").pop();
+    if (lastNumber % 2 === 0) {
+      return true;
+    }
+  }
+
   useEffect(() => {
-    setPaymentMethodsCountendingineven(0);
-  });
+    const paymentMethodsEven = paymentMethods.filter((e) => {
+      return evenNumber(e.last4);
+    })
+    setPaymentMethodsCountendingineven(paymentMethodsEven.length);
+  }, [paymentMethods]);
 
   useEffect(() => {
     setPaymentMethodsCount(paymentMethods.length);
-  });
+  }, [paymentMethods]);
 
   return (
     <div className="App">

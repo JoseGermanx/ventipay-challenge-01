@@ -26,6 +26,20 @@
       "type": "credit_card",
       "last4": 4567,
       "created_at": "2021-01-01 00:00:00"
+    },
+    {
+      "id": 5,
+      "brand": "visa",
+      "type": "credit_card",
+      "last4": 5678,
+      "created_at": "2021-01-01 00:00:00"
+    },
+    {
+      "id": 6,
+      "brand": "diners",
+      "type": "credit_card",
+      "last4": 6789,
+      "created_at": "2021-01-01 00:00:00"
     }
   ]
   
