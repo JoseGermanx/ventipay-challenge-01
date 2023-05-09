@@ -44,7 +44,7 @@ server.get("/payment_methods", (req, res) => {
       }
       if (file.length === 0) {
         res.status(404).json({ message: "No payment methods found" });
-      }     
+      }
       if (type) {
         const paymentType = data.filter((e) => e.type === type);
         return res.status(200).json(paymentType);
@@ -94,14 +94,7 @@ server.delete("/payment_methods/:id", (req, res) => {
         if (e.id === Number(id)) {
           data.splice(data.indexOf(e), 1);
           const methodDeleted = JSON.stringify(data, null, 2);
-
-          //   fs.writeFile("./data/data.json", methodDeleted, (err) => {
-          //     if (error) {
-          //       res.status(500).json({ message: "Can not access to the database" });
-          // console.log("Can not access to the database", error);
-          //     }
           return res.status(200).json({ data });
-          // });
         }
       });
     });
