@@ -80,7 +80,7 @@
     "id": 32,
     "brand": "visa",
     "type": "credit_card",
-    "last4": 8901,
+    "last4": 8906,
     "created_at": "2021-01-01 00:00:00"
   },
   {
@@ -94,21 +94,21 @@
     "id": 34,
     "brand": "diners",
     "type": "credit_card",
-    "last4": 6790,
+    "last4": 6794,
     "created_at": "2021-01-01 00:00:00"
   },
   {
     "id": 35,
     "brand": "mastercard",
     "type": "debit_card",
-    "last4": 7890,
+    "last4": 7892,
     "created_at": "2021-01-01 00:00:00"
   },
   {
     "id": 36,
     "brand": "visa",
     "type": "credit_card",
-    "last4": 8901,
+    "last4": 8902,
     "created_at": "2021-01-01 00:00:00"
   },
   {
