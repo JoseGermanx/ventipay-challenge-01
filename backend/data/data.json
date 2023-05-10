@@ -7,24 +7,10 @@
     "created_at": "2021-01-01 00:00:00"
   },
   {
-    "id": 18,
-    "brand": "diners",
-    "type": "credit_card",
-    "last4": 6784,
-    "created_at": "2021-01-01 00:00:00"
-  },
-  {
     "id": 19,
     "brand": "mastercard",
     "type": "debit_card",
     "last4": 7890,
-    "created_at": "2021-01-01 00:00:00"
-  },
-  {
-    "id": 20,
-    "brand": "visa",
-    "type": "credit_card",
-    "last4": 8901,
     "created_at": "2021-01-01 00:00:00"
   },
   {
@@ -53,13 +39,6 @@
     "brand": "visa",
     "type": "debit_card",
     "last4": 9012,
-    "created_at": "2021-01-01 00:00:00"
-  },
-  {
-    "id": 26,
-    "brand": "diners",
-    "type": "credit_card",
-    "last4": 6788,
     "created_at": "2021-01-01 00:00:00"
   },
   {

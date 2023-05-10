@@ -1,4 +1,5 @@
 import { React, useEffect, useState } from "react";
+import "./style.css"
 
 function PaymentMethod() {
   const [paymentMethodsCount, setPaymentMethodsCount] = useState();
@@ -40,7 +41,6 @@ function PaymentMethod() {
       })
         .then((res) => res.json())
         .then((res) => console.log(res));
-
       window.location.reload();
     }
   };
@@ -57,13 +57,13 @@ function PaymentMethod() {
   }, [paymentMethods]);
 
   return (
-    <div className="App">
+    <div className="payment_methods_container">
       <h1>Payment Methods.</h1>
       <h2>Total: ({paymentMethodsCount})</h2>
       <h2>
         Total ending in an even number: ({paymentMethodsCountendingineven}){" "}
       </h2>
-      <div>
+      <div className="delete_button">
         <h4>Delete By Card ID:</h4>
         <select
           name="id_card"
@@ -85,12 +85,14 @@ function PaymentMethod() {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <ul>
+        <ul className="lista">
           {paymentMethods.map((o, key) => {
             return (
               // TODO JG Implement key for each list item
               <li key={key}>
-                Brand: {o.brand}, Last 4: {o.last4}, Created At: {o.created_at}
+                <span>Brand: {o.brand}</span>
+                <span>Last 4: {o.last4}</span>
+                <span className="text_min">Created At: {o.created_at}</span>
               </li>
             );
           })}
