@@ -62,7 +62,7 @@ function PaymentMethod() {
       <h2>
         Total ending in an even number: ({paymentMethodsCountendingineven}){" "}
       </h2>
-      <div className="">
+      <div className="my-4">
         <h4>Delete By Card ID:</h4>
         <select
           name="id_card"
