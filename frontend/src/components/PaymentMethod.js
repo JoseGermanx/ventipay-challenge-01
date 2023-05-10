@@ -1,5 +1,4 @@
 import { React, useEffect, useState } from "react";
-import "./style.css"
 
 function PaymentMethod() {
   const [paymentMethodsCount, setPaymentMethodsCount] = useState();
@@ -57,18 +56,19 @@ function PaymentMethod() {
   }, [paymentMethods]);
 
   return (
-    <div className="payment_methods_container">
+    <div className="text-lg font-medium text-gray-900 place-content-center mx-40 my-40">
       <h1>Payment Methods.</h1>
       <h2>Total: ({paymentMethodsCount})</h2>
       <h2>
         Total ending in an even number: ({paymentMethodsCountendingineven}){" "}
       </h2>
-      <div className="delete_button">
+      <div className="">
         <h4>Delete By Card ID:</h4>
         <select
           name="id_card"
           id="id_card"
           onChange={(e) => setIdCard(e.target.value)}
+          className="bg-slate-200 p-2 rounded"
         >
           <option value={false}>Select an id card</option>
           {paymentMethods.map((e) => {
@@ -79,20 +79,20 @@ function PaymentMethod() {
             );
           })}
         </select>
-        <button onClick={() => deleteCard()}>Delete Card</button>
+        <button onClick={() => deleteCard()} className="bg-slate-200 p-2 rounded mx-2">Delete Card</button>
       </div>
       <hr />
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <ul className="lista">
+        <ul className="divide-y divide-gray-200">
           {paymentMethods.map((o, key) => {
             return (
               // TODO JG Implement key for each list item
-              <li key={key}>
-                <span>Brand: {o.brand}</span>
-                <span>Last 4: {o.last4}</span>
-                <span className="text_min">Created At: {o.created_at}</span>
+              <li key={key} className="py-4 flex flex-col">
+                <span className="text-sm font-medium text-gray-900">Brand: {o.brand}</span>
+                <span className="text-sm text-gray-500">Last 4: {o.last4}</span>
+                <span className="text-sm text-gray-300">Created At: {o.created_at}</span>
               </li>
             );
           })}
