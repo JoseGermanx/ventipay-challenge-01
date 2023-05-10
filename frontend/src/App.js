@@ -22,12 +22,12 @@ function App() {
 
   //TODO JG Implement fetch inside of useEffect for the first pull and set the state of paymentMethod
   useEffect(() => {
-    fetch("http://127.0.0.1/payment_methods?type=credit_card")
+    fetch("http://127.0.0.1/payment_methods")
       .then((response) => response.json())
       .then((data) => setPaymentMethods(data))
       .catch((error) => console.log(error));
     setTimeout(() => {
-      window.location.replace("");
+      window.location.reload();
     }, 30000);
   }, []);
 
@@ -46,6 +46,7 @@ function App() {
   }
 
   const deleteCard = () => {
+    if(idCard) {
     fetch(`http://127.0.0.1/payment_methods/delete/${idCard}`, {
       method: "DELETE",
     })
@@ -53,6 +54,7 @@ function App() {
       .then((res) => console.log(res));
 
       window.location.reload();
+  }
      };
 
   useEffect(() => {
@@ -66,6 +68,8 @@ function App() {
     setPaymentMethodsCount(paymentMethods.length);
   }, [paymentMethods]);
 
+  console.log(idCard)
+
   return (
     <div className="App">
       <h1>Payment Methods.</h1>
@@ -76,6 +80,7 @@ function App() {
       <div>
       <h4>Delete By Card ID:</h4>
       <select name="id_card" id="id_card" onChange={(e) => setIdCard(e.target.value)}>
+        <option value={false}>Select a id card</option>
         {paymentMethods.map((e) => {
           return (
             <option key={e.id} value={e.id}>

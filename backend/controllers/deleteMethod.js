@@ -22,6 +22,8 @@ const deleteMethod = (req, res) => {
                     .status(500)
                     .json({ message: "Can not access to the database" });
                   console.log("Can not access to the database", error);
+                } else {
+                  console.log("Data deleted");
                 }
               });
             }

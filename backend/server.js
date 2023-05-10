@@ -28,6 +28,7 @@ const cors = require("cors"); //TODO JG implementar cors
 const getAllMethods = require("./controllers/getAllMethods");
 const getMethodDetail = require("./controllers/getDetailsMethod");
 const deleteMethod = require("./controllers/deleteMethod");
+const exportCsv = require("./controllers/createCSV");
 //TODO JG configure
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
@@ -42,6 +43,9 @@ server.get("/payment_methods/details/:id", getMethodDetail );
 
 //TODO JG implement endpoint to delete a single payment method
 server.delete("/payment_methods/delete/:id", deleteMethod);
+
+//TODO JG implement endpoint to export all payment methods in CSV format
+server.get("/payment_methods/export", exportCsv);
 
 server.listen({ port: process.env.PORT || 80 }, () => {
   console.log(`🚀 API Server instance ready`);
