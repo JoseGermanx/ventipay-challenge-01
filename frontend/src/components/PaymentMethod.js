@@ -19,7 +19,7 @@ function PaymentMethod() {
     }, 30000);
   }, []);
 
-  //TODO JG implemente isLoagind just for the first pull
+  //TODO JG implemente isLoagind just for the first pull.
   useEffect(() => {
     if (paymentMethods) {
       setIsLoading(false);
